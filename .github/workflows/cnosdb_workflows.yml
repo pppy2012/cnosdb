@@ -2,9 +2,9 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
+    branches: [ test-workflows ]
   pull_request:
-    branches: [ main ]
+    branches: [ test-workflows ]
 
 jobs:
 
@@ -18,12 +18,14 @@ jobs:
       with:
         go-version: 1.17
       
+    - name: Vet
+      run: go vet ./...
+    
     - name: Build
-      run: go install -v ./...
+      run: go install ./...
 
     - name: Test
-      run: go test -v ./...
+      run: go test ./...
     
-    - name: Vet
-      run: go vet -v ./...
+
       
